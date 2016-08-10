@@ -1,7 +1,8 @@
 package lab01;
 
 import lab01.Utils;
-import lab01.AccountFormatException;
+import java.lang.IllegalArgumentException;
+//import lab01.AccountFormatException;
 import lab01.AccountNotFoundException;
 
 /**
@@ -22,15 +23,16 @@ public class Accounts {
      * Account checking method
      * @param accountName String that contains account name for cheching
      * @return true If String was found
-     * @throws AccountFormatException if accountName contains non-numeric characters
+     * @throws IllegalArgumentException if accountName contains non-numeric characters
      * @throws AccountNotFoundException if accountName not found
      */
-    public boolean checkAccountName(String accountName) throws AccountFormatException, AccountNotFoundException {
-        if ( !Utils.isDigitStr( accountName ) ) {
-            throw new AccountFormatException();
-        } else if ( ( accountName.length() != ACCOUNT_LEN ) || !Utils.isStringFound( accountName, ACCOUNTS ) ) {
+    public boolean checkAccountName(String accountName) {
+        if ( ( accountName.length() != ACCOUNT_LEN ) || !Utils.isDigitStr( accountName ) ) {
+            throw new IllegalArgumentException();
+        } else if ( !Utils.isStringFound( accountName, ACCOUNTS ) ) {
             throw new AccountNotFoundException();
-        } else
+        } else {
             return true;
+        }
     }
 }

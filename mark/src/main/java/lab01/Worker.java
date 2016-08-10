@@ -3,6 +3,7 @@ package lab01;
 import lab01.Accounts;
 import lab01.MsgConsts;
 import lab01.ConsoleInOut;
+import java.lang.IllegalArgumentException;
 
 /**
  * Main working class
@@ -52,7 +53,7 @@ public class Worker {
               }
             } catch (AccountNotFoundException e) {
                 cons.writeString( MsgConsts.MSG_ACCOUNT_NOT_FOUND_EXCEPTION.toString() );
-            } catch (AccountFormatException e) {
+            } catch (IllegalArgumentException e) {
                 cons.writeString( MsgConsts.MSG_ACCOUNT_FORMAT_EXCEPTION.toString() );
             }
 

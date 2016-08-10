@@ -38,7 +38,7 @@ public enum MsgConsts {
     },
     MSG_ACCOUNT_FORMAT_EXCEPTION {
         public String toString() {
-            return "AccountFormatException: Account should not contain non-numeric characters\n";
+            return "IllegalArgumentException: Account should have 10 characters length and should not contain non-numeric characters\n";
         }
     }
 }
