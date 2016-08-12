@@ -8,7 +8,7 @@ import java.lang.IllegalArgumentException;
 /**
  * Main working class
  * @author Mark Lobanov (04.08.2016)
- * @version 1.0.4
+ * @version 1.0.5
  */
 public class Worker {
     /** Account list private member */
@@ -52,7 +52,7 @@ public class Worker {
                   cons.writeString( MsgConsts.MSG_ACCOUNT_IS_VALID.toString() );
               }
             } catch (AccountNotFoundException e) {
-                cons.writeString( MsgConsts.MSG_ACCOUNT_NOT_FOUND_EXCEPTION.toString() );
+                cons.writeStringFormat( MsgConsts.MSG_ACCOUNT_NOT_FOUND_EXCEPTION.toString(), cons.getLastInputValue() );
             } catch (IllegalArgumentException e) {
                 cons.writeString( MsgConsts.MSG_ACCOUNT_FORMAT_EXCEPTION.toString() );
             }

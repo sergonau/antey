@@ -7,7 +7,7 @@ import lab01.MsgConsts;
 /**
  * Console reader/writer
  * @author Mark Lobanov (04.08.2016)
- * @version 1.0.4
+ * @version 1.0.5
  */
 public class ConsoleInOut {
     /** Quit commands */
@@ -53,6 +53,15 @@ public class ConsoleInOut {
      */
     public void writeString(String str) {
         System.out.print( str );
+    }
+
+    /**
+     * Method that writes string to console with given format
+     * @param str String that should be displayed
+     * @param args Objects that should be displayed within format string
+     */
+    public void writeStringFormat(String format, Object ... args) {
+        System.out.printf(format, args);
     }
 
     /**
