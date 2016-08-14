@@ -28,6 +28,7 @@ public class Accounts {
     public boolean checkAccountName(String accountName) {
         if ( ( accountName.length() != ACCOUNT_LEN ) || !Utils.isDigitStr( accountName ) ) {
             throw new IllegalArgumentException();
+
         } else if ( !Utils.isStringFound( accountName, ACCOUNTS ) ) {
             throw new AccountNotFoundException();
         } else {

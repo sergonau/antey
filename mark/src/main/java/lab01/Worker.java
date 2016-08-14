@@ -58,7 +58,5 @@ public class Worker {
             }
 
         }
-        // program is closing
-        down();
     }
 }
