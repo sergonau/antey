@@ -1,13 +1,33 @@
 package task01;
 
+import java.io.IOException;
+import static task01.ConsoleOut.*;
+
 /**
  * Created by SDem on 22.08.2016.
- * my task01 main unit
+ * ver: 001
  */
-public class TaskRun {
+class TaskRun {
 
-    public static void main(String[] args) {
-        System.out.println("Hello my dear friend");
+    private Accounts accounts;
+    private ConsoleIn input;
+
+    TaskRun(ConsoleIn input, Accounts accounts) {
+        this.input = input;
+        this.accounts = accounts;
+    }
+
+    void Run() throws IOException {
+        while (input.hasEnterValue()) {
+            try {
+                if (accounts.checkAccountName(input.getInValue())) {
+                    writeLine("Account is valid");
+                }
+            } catch (AccountNoFoundException | InputException e) {
+                writeException(e);
+            }
+
+        }
     }
 
 }
