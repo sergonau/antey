@@ -2,18 +2,25 @@ package task01;
 
 /**
  * Created by SDem on 23.08.2016.
- * ver: 001
+ * ver: 002
  */
-class CommonFunctions {
+final class CommonFunctions {
 
-    static boolean isStringFound(String inputString, String[] arr) {
+    private static final String[] QUIT_COMMAND = { "e", "q", "exit", "quit" };
+    private CommonFunctions() {
+
+    }
+
+    static boolean isExitCommand(String inputString) {
         inputString = inputString.trim().toLowerCase();
-        for (String str : arr) {
+        for (String str : QUIT_COMMAND) {
             if ( str.equals( inputString ) ) {
                 return true;
             }
         }
         return false;
     }
+
+
 
 }

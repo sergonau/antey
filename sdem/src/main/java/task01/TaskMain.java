@@ -4,13 +4,18 @@ import java.io.IOException;
 
 /**
  * Created by SDem on 23.08.2016.
- * ver: 001
+ * ver: 002
  */
 public class TaskMain {
 
     public static void main(String[] args) throws IOException {
-        TaskRun taskRun = new TaskRun(new ConsoleIn(), new Accounts());
-        taskRun.Run();
+
+        ConsoleProcessor consoleProcessor = new ConsoleProcessor(new ConsoleIn(),new ConsoleOut());
+        Accounts accounts = new Accounts();
+
+        TaskRun taskRun;
+        taskRun = new TaskRun(consoleProcessor, accounts);
+        taskRun.doWork();
     }
 
 }

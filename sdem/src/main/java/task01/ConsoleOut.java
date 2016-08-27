@@ -3,16 +3,18 @@ package task01;
 import java.io.IOException;
 
 /**
- * Created by SDem on 23.08.2016.
- * ver: 001
+ * Created by Сергей on 27.08.2016.
+ * ver 002
  */
 class ConsoleOut {
 
-    static void writeLine(String str) {
+
+
+    void writeLine(String str) {
         System.out.println(str);
     }
 
-    static void writeException(Exception e) throws IOException {
+    void writeLine(Exception e) throws IOException {
         System.out.println(e.getMessage());
     }
 
