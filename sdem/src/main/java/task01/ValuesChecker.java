@@ -2,37 +2,27 @@ package task01;
 
 /**
  * Created by Сергей on 27.08.2016.
- * ver 002
+ * ver 003
  */
-class CheckingValues {
+class ValuesChecker {
 
     private final int checkValueLength;
-    private String valueToCheck;
 
-    CheckingValues() {
-
+    ValuesChecker() {
         checkValueLength = 10;
-
     }
 
-    void setValueToCheck(String valueToCheck) {
-        this.valueToCheck = valueToCheck;
-    }
-
-    boolean checkLength() {
-
-        if  (this.valueToCheck.length() != this.checkValueLength) {
+    private boolean checkLength(String valueToCheck) {
+        if  (valueToCheck.length() != this.checkValueLength) {
             throw new InputException(MsgOutToConsole.MSG_ACCOUNT_LENGTH_NO_VALID.toString());
         }
-
         return true;
-
     }
 
-    boolean checkDigitInString() {
+    private boolean checkDigitInString(String valueToCheck) {
         boolean isDigit;
-        for (int i = 0; i < this.valueToCheck.length(); i++) {
-            isDigit = Character.isDigit(this.valueToCheck.charAt(i));
+        for (int i = 0; i < valueToCheck.length(); i++) {
+            isDigit = Character.isDigit(valueToCheck.charAt(i));
             if ( !isDigit ) {
                 throw new InputException(MsgOutToConsole.MSG_ACCOUNT_MUST_CONTAINED_ONLY_DIGIT.toString());
             }
@@ -40,4 +30,7 @@ class CheckingValues {
         return true;
     }
 
+    boolean checkInValue(String valueToCheck) {
+        return checkLength(valueToCheck) && checkDigitInString(valueToCheck);
+    }
 }

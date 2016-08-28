@@ -2,7 +2,7 @@ package task01;
 
 /**
  * Created by SDem on 23.08.2016.
- * ver: 002
+ * ver: 003
  */
 
 class Accounts {
@@ -27,5 +27,4 @@ class Accounts {
         }
         throw new AccountNoFoundException(MsgOutToConsole.MSG_ACCOUNT_NOT_FOUND.toString());
     }
-
 }

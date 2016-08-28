@@ -2,7 +2,7 @@ package task01;
 
 /**
  * Created by sdem on 24.08.2016.
- * ver 002
+ * ver 003
  */
 enum MsgOutToConsole {
 
@@ -12,8 +12,6 @@ enum MsgOutToConsole {
     MSG_ACCOUNT_LENGTH_NO_VALID("Account length must be 10 characters"),
     MSG_ACCOUNT_MUST_CONTAINED_ONLY_DIGIT("Account must contained only digit"),
     MSG_GOODBYE("Goodbye");
-
-
 
     private String msg;
     MsgOutToConsole(String msg){

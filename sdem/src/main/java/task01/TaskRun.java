@@ -5,7 +5,7 @@ import static task01.CommonFunctions.isExitCommand;
 
 /**
  * Created by SDem on 22.08.2016.
- * ver: 002
+ * ver: 003
  */
 class TaskRun {
 
@@ -34,8 +34,6 @@ class TaskRun {
             } catch (AccountNoFoundException | InputException e) {
                 this.consoleProcessor.writeLine(e);
             }
-
         }
     }
-
 }

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /**
  * Created by SDem on 23.08.2016.
- * ver: 002
+ * ver: 003
  */
 class ConsoleIn {
 
@@ -15,9 +15,6 @@ class ConsoleIn {
     }
 
     String getInValue() {
-
         return this.sc.nextLine().trim();
-
     }
-
 }
