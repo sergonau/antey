@@ -5,7 +5,7 @@ import static task01.CommonFunctions.isExitCommand;
 
 /**
  * Created by SDem on 22.08.2016.
- * ver: 003
+ * ver: 004
  */
 class TaskRun {
 
@@ -21,18 +21,18 @@ class TaskRun {
         String inputValue;
         while (true) {
             try {
-                this.consoleProcessor.writeLine(MsgOutToConsole.MSG_INPUT_ACCOUNT.toString());
+                this.consoleProcessor.proposeUserToInputValue();
                 inputValue = this.consoleProcessor.getInValue();
                 if (!isExitCommand(inputValue)) {
                     if (this.accounts.checkAccountName(inputValue)) {
                         this.consoleProcessor.writeLine(MsgOutToConsole.MSG_ACCOUNT_IS_VALID.toString());
                     }
                 } else {
-                    this.consoleProcessor.writeLine(MsgOutToConsole.MSG_GOODBYE.toString());
+                    this.consoleProcessor.goodbye();
                     break;
                 }
             } catch (AccountNoFoundException | InputException e) {
-                this.consoleProcessor.writeLine(e);
+                this.consoleProcessor.writeException(e);
             }
         }
     }

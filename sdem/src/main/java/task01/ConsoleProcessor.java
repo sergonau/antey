@@ -4,7 +4,7 @@ import java.io.IOException;
 import static task01.CommonFunctions.isExitCommand;
 /**
  * Created by sdem on 27.08.2016.
- * ver 003
+ * ver 004
  */
 class ConsoleProcessor {
 
@@ -22,15 +22,23 @@ class ConsoleProcessor {
         this.consOut.writeLine(msg);
     }
 
-    void writeLine(Exception e) throws IOException {
-        this.consOut.writeLine(e);
-    }
-
-    String getInValue() {
+   String getInValue() {
         String inValue = this.consIn.getInValue();
         if (!isExitCommand(inValue)) {
             this.valuesChecker.checkInValue(inValue);
         }
         return inValue;
+    }
+
+    void proposeUserToInputValue() {
+        this.writeLine(MsgOutToConsole.MSG_INPUT_ACCOUNT.toString());
+    }
+
+    void goodbye() {
+        this.writeLine(MsgOutToConsole.MSG_GOODBYE.toString());
+    }
+
+    void writeException(Exception e) throws IOException {
+        this.consOut.writeException(e);
     }
 }

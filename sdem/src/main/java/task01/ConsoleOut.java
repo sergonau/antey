@@ -4,7 +4,7 @@ import java.io.IOException;
 
 /**
  * Created by Сергей on 27.08.2016.
- * ver 003
+ * ver 004
  */
 class ConsoleOut {
 
@@ -12,7 +12,7 @@ class ConsoleOut {
         System.out.println(str);
     }
 
-    void writeLine(Exception e) throws IOException {
+    void writeException(Exception e) throws IOException {
         System.out.println(e.getMessage());
     }
 }
