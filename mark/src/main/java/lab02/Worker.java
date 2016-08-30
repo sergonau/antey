@@ -4,13 +4,13 @@ package lab02;
  * Main work method
  *
  * @author Mark Lobanov (17.08.2016)
- * @version 2.0.3
+ * @version 2.0.4
  */
 public class Worker {
     /** Console reader/writer private class member */
-    private ConsoleInOut cons;
+    private ConsoleInOut console;
     /** Factory for triangle calculators */
-    private TriangleCalculatorFactory fact;
+    private TriangleCalculatorFactory factory;
     /** triangle params parser */
     private InputParamsParser parser;
     /** triangle transfer object */
@@ -24,9 +24,9 @@ public class Worker {
      * @param aConsole Console reader/writer
      * */
     public Worker(TriangleCalculatorFactory aFactory, TriangleTransferData aData, ConsoleInOut aConsole, InputParamsParser aParser) {
-        this.fact = aFactory;
+        this.factory = aFactory;
         this.data = aData;
-        this.cons = aConsole;
+        this.console = aConsole;
         this.parser = aParser;
     }
 
@@ -38,14 +38,14 @@ public class Worker {
     private void setCurrentTrialgleCalculationKind() {
         try {
 
-            data.setTriangleCalculationKind( parser.parseStringToTrialgleCalculationKind( cons.getLastInputValueLevel1() ) );
+            data.setTriangleCalculationKind( parser.parseStringToTrialgleCalculationKind( console.getLastInputValueLevel1() ) );
 
         } catch (NumberFormatException e) {
             data.canNotBeUsed();
-            cons.writeStringLn( MsgConsts.MSG_NFE.toString() + String.format(MsgConsts.MSG_PARSE_ERROR_IS_NOT_NUMERIC_VALUE.toString(), cons.getLastInputValueLevel1() ));
+            console.writeStringLn( MsgConsts.MSG_NFE.toString() + String.format(MsgConsts.MSG_PARSE_ERROR_IS_NOT_NUMERIC_VALUE.toString(), console.getLastInputValueLevel1() ));
         } catch (IllegalArgumentException e) {
             data.canNotBeUsed();
-            cons.writeStringLn(MsgConsts.MSG_IAE.toString() + e.getMessage());
+            console.writeStringLn(MsgConsts.MSG_IAE.toString() + e.getMessage());
         }
     }
 
@@ -53,7 +53,7 @@ public class Worker {
      * Method that checks .data correctness after menu level 1 choice
      *
      * */
-    private boolean correctLastInputValueOnLevel1() {
+    private boolean lastInputValueOnLevel1isCorrect() {
         return data.getTriangleCalculationKind() != TrialgleCalculationKind.NOTHING;
     }
 
@@ -65,7 +65,7 @@ public class Worker {
      * */
     private void setCurrentTrialgleCalculationParams() {
         double[] params_arr;
-        String tmp = cons.getLastInputValueLevel2();
+        String tmp = console.getLastInputValueLevel2();
 
         try {
 
@@ -86,59 +86,59 @@ public class Worker {
                     break;
                 }
                 default: {
-                    data.canBeUsed();
+                    data.canNotBeUsed();
                     break;
                 }
             }
 
         } catch (NumberFormatException e) {
             data.canNotBeUsed();
-            cons.writeStringLn(MsgConsts.MSG_NFE.toString() + e.getMessage());
+            console.writeStringLn(MsgConsts.MSG_NFE.toString() + e.getMessage());
         } catch (IllegalArgumentException e) {
             data.canNotBeUsed();
-            cons.writeStringLn(MsgConsts.MSG_IAE.toString() + e.getMessage());
+            console.writeStringLn(MsgConsts.MSG_IAE.toString() + e.getMessage());
         }
 
     }
 
-    private boolean correctLastInputValueOnLevel2() {
-        return this.correctLastInputValueOnLevel1() && data.canBeUsed();
+    private boolean lastInputValueOnLevel2isCorrect() {
+        return this.lastInputValueOnLevel1isCorrect() && data.canBeUsed();
     }
 
 
     /** main working method */
     public void runWork() {
 
-        cons.writeString( MsgConsts.MSG_WELLCOME.toString() );
+        console.writeString( MsgConsts.MSG_WELLCOME.toString() );
         // working on 1 level
-        while ( cons.hasProperLevel1InputString() ) {
+        while ( console.hasProperLevel1InputString() ) {
             // parce input value into triangle calculation kind
             setCurrentTrialgleCalculationKind();
-            if (correctLastInputValueOnLevel1()) {
+            if (lastInputValueOnLevel1isCorrect()) {
 
                 // creating the triangle calculator of selected kind
-                TriangleCalculator triCalculator = fact.newTriangleCalculator(data.getTriangleCalculationKind());
+                TriangleCalculator triCalculator = factory.newTriangleCalculator(data.getTriangleCalculationKind());
 
                 // working on 2 level
-                while ( cons.hasProperLevel2InputString( data.getTriangleCalculationKind() ) ) {
+                while ( console.hasProperLevel2InputString( data.getTriangleCalculationKind() ) ) {
                     // parce input values into triangle calculation params
                     setCurrentTrialgleCalculationParams();
-                    if (correctLastInputValueOnLevel2()) {
+                    if (lastInputValueOnLevel2isCorrect()) {
                         try {
                             // triangle calculator initialization from the transfer object
                             triCalculator.initFrom( data );
                             // calculating triangle area abd printing it
-                            cons.writeStringLn("TriangleArea=" + triCalculator.calculateArea() + " (OK)" );
+                            console.writeStringLn("TriangleArea=" + triCalculator.calculateArea() + " (OK)" );
 
                         } catch (IllegalArgumentException e) {
-                            cons.writeStringLn( MsgConsts.MSG_IAE.toString() + e.getMessage() );
+                            console.writeStringLn( MsgConsts.MSG_IAE.toString() + e.getMessage() );
                         }
                     }
-                    cons.writeString( MsgConsts.MSG_NEW_LINE.toString() );
+                    console.writeString( MsgConsts.MSG_NEW_LINE.toString() );
                 }
             }
         }
-        cons.writeString( MsgConsts.MSG_FINAL.toString() );
+        console.writeString( MsgConsts.MSG_FINAL.toString() );
     }
 
 }

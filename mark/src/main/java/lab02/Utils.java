@@ -4,7 +4,7 @@ package lab02;
  * Some useful common functions
  *
  * @author Mark Lobanov (17.08.2016)
- * @version 2.0.3
+ * @version 2.0.4
  */
 public class Utils {
 
@@ -67,31 +67,29 @@ public class Utils {
     }
 
     /**
-     * Extracts a part of DSV (char delimited) string
+     * Extracts a part of DSV (Delimiter separated) string with specific delimiter
      * https://en.wikipedia.org/wiki/Delimiter-separated_values
      *
-     * @param num part place 0..partCount-1
-     * @param str source DSV string
+     * @param partIndex part place 0..partCount-1
+     * @param str source CSV string
      * @param delimiter char for part separation
-     * @return string at position <b>num</b> in source string
+     * @return string at position <b>partIndex</b> in source string
+     * @throws IndexOutOfBoundsException than (partIndex <= 0) or (partIndex > partCount-1)
      */
-    public static String partAt(final int num, final String str, final String delimiter) {
-        String str_t = str.trim();
-        String[] tmp = str_t.split( delimiter );
-        int cnt = partCount( str_t, delimiter );
+    public static String partAt(final int partIndex, final String str, final String delimiter) {
+        String   strTmp    = str.trim();
+        String[] strArr    = strTmp.split( delimiter );
+        int      strArrLen = strArr.length;
 
-        if ( delimiter.length() != 1 ) {
-            throw new IllegalArgumentException("Delimiter must contain only one char instead of <" + delimiter + ">");
-        } else {
-            if ( ( num >= 0) && ( num < cnt ) ){
-                if ( str_t.endsWith(delimiter) && ( num == cnt-1 ) ) {
-                    return "";
-                } else {
-                    return tmp[num];
-                }
+        if ( ( partIndex >= 0) && ( (( partIndex < strArrLen ) && ( !strTmp.endsWith(delimiter) )) ||
+                (( partIndex <= strArrLen ) && ( strTmp.endsWith(delimiter ) )) ) ) {
+            if ( strTmp.endsWith(delimiter) && ( partIndex == strArrLen ) ) {
+                return "";
             } else {
-                throw new IllegalArgumentException("Part index <" + num + "> is out of bounds. partCount=" + cnt);
+                return strArr[partIndex];
             }
+        } else {
+            throw new IndexOutOfBoundsException("Part index " + partIndex + " is out of bounds. partCount=" + partCount(strTmp, delimiter) );
         }
     }
 
