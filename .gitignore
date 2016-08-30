@@ -1,2 +1,5 @@
-/.idea
-/.antey.iml
+/target/
+/.settings/
+/.classpath
+/.project
+/.idea/
