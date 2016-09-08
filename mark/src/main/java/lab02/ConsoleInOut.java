@@ -40,7 +40,7 @@ public class ConsoleInOut {
     /**
      * printing signatures for program quit
      */
-    private String getQuitSignatures() {
+    protected String getQuitSignatures() {
         String res = "";
         for (String str : QUIT_SIGNATURES) {
             res += "\"" + str + "\" ";
@@ -51,7 +51,7 @@ public class ConsoleInOut {
     /**
      * Method that writes menu level 1 prompt string to console
      */
-    private void printLevel1Prompt() {
+    protected void printLevel1Prompt() {
         writeString( MsgConsts.MSG_NEW_LINE.toString() );
         writeString( MsgConsts.MSG_PROMPT_LEVEL1.toString() );
         writeString( getQuitSignatures() );
