@@ -1,5 +1,6 @@
 package lab02a.accounts;
 
+import static lab02a.accounts.AccountConsts.MSG_ANFE;
 import static lab02a.common.Utils.isStringFound;
 
 /**
@@ -21,7 +22,7 @@ public class AccountStore {
         if ( isStringFound( accountName, ACCOUNTS ) ) {
             return accountName;
         } else {
-            throw new AccountNotFoundException( String.format(AccountConsts.MSG_ANFE.toString(), accountName) );
+            throw new AccountNotFoundException( String.format(MSG_ANFE.toString(), accountName) );
         }
     }
 }

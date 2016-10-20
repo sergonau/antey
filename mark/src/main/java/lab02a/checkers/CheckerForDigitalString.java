@@ -1,5 +1,6 @@
 package lab02a.checkers;
 
+import static lab02a.checkers.CheckerConsts.MSG_STR_NFE;
 import static lab02a.common.Utils.isDigitStr;
 
 /**
@@ -18,7 +19,7 @@ public class CheckerForDigitalString implements IInputChecker {
         if ( (value.length() == accountLength) && isDigitStr( value ) ) {
             return true;
         } else {
-            throw new NumberFormatException( String.format(CheckerConsts.MSG_STR_NFE.toString(), value) );
+            throw new NumberFormatException( String.format(MSG_STR_NFE.toString(), value) );
         }
     }
 }

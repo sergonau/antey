@@ -31,11 +31,12 @@ public class ConsoleManager implements IStringWriter {
      * printing signatures for program quit
      */
     private String getQuitSignatures() {
-        String res = "";
+        StringBuffer buf = new StringBuffer( Byte.MAX_VALUE );
+
         for (String str : QUIT_SIGNATURES) {
-            res += "\"" + str + "\" ";
+            buf.append( "\"" ).append( str ).append( "\" " );
         }
-        return res;
+        return buf.toString();
     }
 
     /**
@@ -77,17 +78,6 @@ public class ConsoleManager implements IStringWriter {
         return --currentLevel;
     }
 
-
-
-//    public void setCurrentLevel(int currentLevel) {
-//        // TODO: remove after debug
-//        this.currentLevel = currentLevel;
-//    }
-//
-//    public int getCurrentLevel () {
-//        // TODO: remove after debug
-//        return currentLevel;
-//    }
 
 
 

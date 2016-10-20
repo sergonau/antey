@@ -1,6 +1,12 @@
 package lab02a.accounts;
 
-import lab02a.checkers.CheckerForDigitalString;
+import static lab02a.accounts.AccountConsts.MSG_ANFE;
+import static lab02a.accounts.AccountConsts.MSG_IOE;
+import static lab02a.accounts.AccountConsts.MSG_ACC_FOUND;
+import static lab02a.accounts.AccountConsts.MSG_ACC_PROMPT;
+import static lab02a.accounts.AccountConsts.MSG_ACC_WELLCOME;
+import static lab02a.accounts.AccountConsts.MSG_ACC_FINAL_WORD;
+
 import lab02a.checkers.IInputChecker;
 import lab02a.common.IWorkRunnable;
 import lab02a.consoles.ConsoleManager;
@@ -42,14 +48,14 @@ public class AccountWorker implements IWorkRunnable {
     public void runWork() {
         String accountEntered = "";
 
-        logger.setParam( logAccountsValidation );
+        logger.setFileName( logAccountsValidation );
 
         console.switchToNextLevel();
-        console.setPrompt( AccountConsts.MSG_ACC_PROMPT.toString() );
+        console.setPrompt( MSG_ACC_PROMPT.toString() );
         console.setChecker( checker );
 
         console.newLine();
-        console.writeStrLn( AccountConsts.MSG_ACC_WELLCOME.toString() );
+        console.writeStrLn( MSG_ACC_WELLCOME.toString() );
         while ( console.hasProperInputString() ) {
 
             if ( console.lastInputValueIsCorrect() ) {
@@ -57,23 +63,23 @@ public class AccountWorker implements IWorkRunnable {
                 try {
 
                     if ( isAccountFound( accountEntered ) ) {
-                        String msg = String.format(AccountConsts.MSG_ACC_FOUND.toString(), accountEntered);
+                        String msg = String.format(MSG_ACC_FOUND.toString(), accountEntered);
                         console.writeStrLn( msg );
                         logger.writeStrLn( msg );
                         console.newLine();
                     } else {
-                        logger.writeStrLn( String.format(AccountConsts.MSG_ANFE.toString(), accountEntered) );
+                        logger.writeStrLn( String.format(MSG_ANFE.toString(), accountEntered) );
                     }
 
                 } catch (AccountNotFoundException e) {
-                    console.writeStrLn( String.format(AccountConsts.MSG_ANFE.toString(), accountEntered) );
+                    console.writeStrLn( String.format(MSG_ANFE.toString(), accountEntered) );
                 } catch (IOException e) {
-                    console.writeStrLn( String.format(AccountConsts.MSG_IOE.toString(), logger.getFileName()) );
+                    console.writeStrLn( String.format(MSG_IOE.toString(), logger.getFileName()) );
                 }
             }
         }
         console.switchToPrevLevel();
-        console.writeStrLn( AccountConsts.MSG_ACC_FINAL_WORD.toString() );
+        console.writeStrLn( MSG_ACC_FINAL_WORD.toString() );
     }
 
 }

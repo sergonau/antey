@@ -1,5 +1,7 @@
 package lab02a.checkers;
 
+import static lab02a.checkers.CheckerConsts.MSG_DBL_IAE;
+import static lab02a.checkers.CheckerConsts.MSG_DBL_NFE;
 import static lab02a.common.Utils.prepareString;
 
 /**
@@ -23,7 +25,7 @@ public class CheckerForDoubleArray implements IInputChecker {
         tmpArray = value.split( CheckerConsts.SINGLE_SPACE.toString() );
         len = tmpArray.length;
         if (len != valuesCount) {
-            throw new IllegalArgumentException( String.format( CheckerConsts.MSG_DBL_IAE.toString(), valuesCount, len ) );
+            throw new IllegalArgumentException( String.format( MSG_DBL_IAE.toString(), valuesCount, len ) );
         }
 
         // checking for arguments format
@@ -32,7 +34,7 @@ public class CheckerForDoubleArray implements IInputChecker {
             try {
                 dbl = Double.parseDouble( tmpStr );
             } catch (NumberFormatException e) {
-                throw new NumberFormatException( String.format(CheckerConsts.MSG_DBL_NFE.toString(), tmpStr) );
+                throw new NumberFormatException( String.format(MSG_DBL_NFE.toString(), tmpStr) );
             }
         }
         return true;

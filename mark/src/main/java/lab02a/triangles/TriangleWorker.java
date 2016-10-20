@@ -1,5 +1,14 @@
 package lab02a.triangles;
 
+import static lab02a.triangles.TriangleConsts.MSG_TRI_WELLCOME;
+import static lab02a.triangles.TriangleConsts.MSG_TRI_FINAL_WORD;
+import static lab02a.triangles.TriangleConsts.MSG_TRI_PROMPT;
+import static lab02a.triangles.TriangleConsts.MSG_IOE;
+import static lab02a.triangles.TriangleConsts.MSG_AREA_CALCULATED;
+import static lab02a.triangles.TriangleConsts.MSG_PROMPT_SIDE_AND_HEIGHT;
+import static lab02a.triangles.TriangleConsts.MSG_PROMPT_THREE_SIDES;
+import static lab02a.triangles.TriangleConsts.MSG_PROMPT_TWO_SIDES_AND_ANGLE;
+
 import lab02a.checkers.CheckerForDoubleArray;
 import lab02a.checkers.CheckerForInt;
 import lab02a.common.IWorkRunnable;
@@ -23,7 +32,11 @@ public class TriangleWorker implements IWorkRunnable {
     private ITriangleCalculator calculator;
     LogWriter logger;
 
-    public TriangleWorker(ConsoleManager console, CheckerForInt checker, TriangleCalculatorFactory factory, InputParamsParser parser, LogWriter logger) {
+    public TriangleWorker(ConsoleManager console,
+            CheckerForInt checker,
+            TriangleCalculatorFactory factory,
+            InputParamsParser parser,
+            LogWriter logger) {
         this.console = console;
         this.checker = checker;
         this.factory = factory;
@@ -52,13 +65,13 @@ public class TriangleWorker implements IWorkRunnable {
     private String getPromptForCalculation() {
         switch ( selectedKind ) {
             case SIDE_AND_HEIGHT: {
-                return TriangleConsts.MSG_PROMPT_SIDE_AND_HEIGHT.toString();
+                return MSG_PROMPT_SIDE_AND_HEIGHT.toString();
             }
             case THREE_SIDES: {
-                return TriangleConsts.MSG_PROMPT_THREE_SIDES.toString();
+                return MSG_PROMPT_THREE_SIDES.toString();
             }
             case TWO_SIDES_AND_ANGLE: {
-                return TriangleConsts.MSG_PROMPT_TWO_SIDES_AND_ANGLE.toString();
+                return MSG_PROMPT_TWO_SIDES_AND_ANGLE.toString();
             }
             default: {
                 return "";
@@ -68,14 +81,14 @@ public class TriangleWorker implements IWorkRunnable {
 
     @Override
     public void runWork() {
-        logger.setParam( logGeometryCalculation );
+        logger.setFileName( logGeometryCalculation );
 
         console.switchToNextLevel();
-        console.setPrompt( TriangleConsts.MSG_TRI_PROMPT.toString() );
+        console.setPrompt( MSG_TRI_PROMPT.toString() );
         console.setChecker( checker );
 
         console.newLine();
-        console.writeStrLn( TriangleConsts.MSG_TRI_WELLCOME.toString() );
+        console.writeStrLn( MSG_TRI_WELLCOME.toString() );
         while ( console.hasProperInputString() ) {
 
             checker.setRange(1, 3);
@@ -97,7 +110,7 @@ public class TriangleWorker implements IWorkRunnable {
                                 calculator.initFrom( transferData );
                                 area = calculator.calculateArea();
 
-                                String msg = String.format(TriangleConsts.MSG_AREA_CALCULATED.toString(), area);
+                                String msg = String.format(MSG_AREA_CALCULATED.toString(), area);
                                 console.writeStrLn( msg );
                                 logger.writeStrLn( calculator.getParamToString()+msg );
                             } catch (NumberFormatException e) {
@@ -105,7 +118,7 @@ public class TriangleWorker implements IWorkRunnable {
                             } catch (IllegalArgumentException e) {
                                 console.writeStrLn( e.getMessage() );
                             } catch (IOException e) {
-                                console.writeStrLn( String.format(TriangleConsts.MSG_IOE.toString(), logger.getFileName()) );
+                                console.writeStrLn( String.format(MSG_IOE.toString(), logger.getFileName()) );
                             }
                         }
                     }
@@ -115,7 +128,7 @@ public class TriangleWorker implements IWorkRunnable {
             }
         }
         console.switchToPrevLevel();
-        console.writeStrLn( TriangleConsts.MSG_TRI_FINAL_WORD.toString() );
+        console.writeStrLn( MSG_TRI_FINAL_WORD.toString() );
     }
 
 }

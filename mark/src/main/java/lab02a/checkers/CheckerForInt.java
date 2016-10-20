@@ -1,6 +1,7 @@
 package lab02a.checkers;
 
-import lab02a.common.CommonConsts;
+import static lab02a.checkers.CheckerConsts.MSG_INT_IAE;
+import static lab02a.checkers.CheckerConsts.MSG_INT_NFE;
 
 /**
  * Created by Mark Lobanov on 29.09.2016.
@@ -24,13 +25,13 @@ public class CheckerForInt implements IInputChecker {
         try {
             i = Integer.parseInt( value );
         } catch (NumberFormatException e) {
-            throw new NumberFormatException( String.format(CheckerConsts.MSG_INT_NFE.toString(), value) );
+            throw new NumberFormatException( String.format(MSG_INT_NFE.toString(), value) );
         }
 
         if ((i >= minValue) && (i <= maxValue)) {
             return true;
         } else {
-            throw new IllegalArgumentException( String.format(CheckerConsts.MSG_INT_IAE.toString(), minValue, maxValue, i) );
+            throw new IllegalArgumentException( String.format(MSG_INT_IAE.toString(), minValue, maxValue, i) );
         }
     }
 }

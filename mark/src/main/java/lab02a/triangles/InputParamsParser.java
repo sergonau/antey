@@ -1,6 +1,20 @@
 package lab02a.triangles;
 
-import static lab02a.common.Utils.isDigitStr;
+import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_IS_NOT_DOUBLE_VALUE;
+import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_EMPTY_CHOICE;
+import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_PARAM_1_3;
+import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_EMPTY_PARAMS;
+import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_MUST_BE_2_PARAMS;
+import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_INVALID_SIDE_SIZE;
+import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_INVALID_HEIGHT_SIZE;
+import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_MUST_BE_3_1_PARAMS;
+import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_INVALID_SIDEA_SIZE;
+import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_INVALID_SIDEB_SIZE;
+import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_INVALID_SIDEC_SIZE;
+import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_INVALID_SIDES_SUM;
+import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_MUST_BE_3_2_PARAMS;
+import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_INVALID_ANGLE_SIZE;
+
 import static lab02a.common.Utils.isStrEmpty;
 import static lab02a.common.Utils.partCount;
 import static lab02a.common.Utils.partAt;
@@ -30,7 +44,7 @@ public class InputParamsParser {
         try {
             return Double.parseDouble( tmp );
         } catch (NumberFormatException e) {
-            throw new NumberFormatException( String.format( TriangleConsts.MSG_PARSE_ERROR_IS_NOT_DOUBLE_VALUE.toString(), str.trim() ));
+            throw new NumberFormatException( String.format( MSG_PARSE_ERROR_IS_NOT_DOUBLE_VALUE.toString(), str.trim() ));
         }
     }
 
@@ -47,11 +61,11 @@ public class InputParamsParser {
 
 
         if ( isStrEmpty(tmp) ) {
-            throw new IllegalArgumentException( TriangleConsts.MSG_PARSE_ERROR_EMPTY_CHOICE.toString() );
+            throw new IllegalArgumentException( MSG_PARSE_ERROR_EMPTY_CHOICE.toString() );
         } else {
             int i = Integer.parseInt(tmp);
             if ( (i < 1) || (i > 3) ) {
-                throw new IllegalArgumentException( TriangleConsts.MSG_PARSE_ERROR_PARAM_1_3.toString() + i);
+                throw new IllegalArgumentException( MSG_PARSE_ERROR_PARAM_1_3.toString() + i);
             } else {
                 switch (i) {
                     case 1: {
@@ -86,23 +100,23 @@ public class InputParamsParser {
     public double[] parseSideAndHeight(String params) {
 
         if ( isStrEmpty( params ) ) {
-            throw new IllegalArgumentException( TriangleConsts.MSG_PARSE_ERROR_EMPTY_PARAMS.toString() );
+            throw new IllegalArgumentException( MSG_PARSE_ERROR_EMPTY_PARAMS.toString() );
         } else {
             double[] arr = new double[2];
             int cnt = partCount( params , SINGLE_SPACE);
 
             if (cnt != 2) {
-                throw new IllegalArgumentException( TriangleConsts.MSG_PARSE_ERROR_MUST_BE_2_PARAMS.toString() + cnt );
+                throw new IllegalArgumentException( MSG_PARSE_ERROR_MUST_BE_2_PARAMS.toString() + cnt );
             } else {
                 // Side
                 arr[0] = parseStringToDouble( partAt(0, params, SINGLE_SPACE) );
                 if ( arr[0] <= 0 ) {
-                    throw new IllegalArgumentException( TriangleConsts.MSG_PARSE_ERROR_INVALID_SIDE_SIZE.toString() + arr[0] );
+                    throw new IllegalArgumentException( MSG_PARSE_ERROR_INVALID_SIDE_SIZE.toString() + arr[0] );
                 }
                 // Height
                 arr[1] = parseStringToDouble( partAt(1, params, SINGLE_SPACE) );
                 if ( arr[1] <= 0 ) {
-                    throw new IllegalArgumentException( TriangleConsts.MSG_PARSE_ERROR_INVALID_HEIGHT_SIZE.toString() + arr[0] );
+                    throw new IllegalArgumentException( MSG_PARSE_ERROR_INVALID_HEIGHT_SIZE.toString() + arr[0] );
                 }
             }
             return arr;
@@ -125,32 +139,32 @@ public class InputParamsParser {
     public double[] parseThreeSides(String params) {
 
         if ( isStrEmpty( params ) ) {
-            throw new IllegalArgumentException( TriangleConsts.MSG_PARSE_ERROR_EMPTY_PARAMS.toString() );
+            throw new IllegalArgumentException( MSG_PARSE_ERROR_EMPTY_PARAMS.toString() );
         } else {
             double[] arr = new double[3];
             int cnt = partCount(params, SINGLE_SPACE);
 
             if (cnt != 3) {
-                throw new IllegalArgumentException( TriangleConsts.MSG_PARSE_ERROR_MUST_BE_3_1_PARAMS.toString() + cnt);
+                throw new IllegalArgumentException( MSG_PARSE_ERROR_MUST_BE_3_1_PARAMS.toString() + cnt);
             } else {
                 // SideA
                 arr[0] = parseStringToDouble( partAt(0, params, SINGLE_SPACE) );
                 if ( arr[0] <= 0 ) {
-                    throw new IllegalArgumentException( TriangleConsts.MSG_PARSE_ERROR_INVALID_SIDEA_SIZE.toString() + arr[0] );
+                    throw new IllegalArgumentException( MSG_PARSE_ERROR_INVALID_SIDEA_SIZE.toString() + arr[0] );
                 }
                 // SideB
                 arr[1] = parseStringToDouble( partAt(1, params, SINGLE_SPACE) );
                 if ( arr[1] <= 0 ) {
-                    throw new IllegalArgumentException( TriangleConsts.MSG_PARSE_ERROR_INVALID_SIDEB_SIZE.toString() + arr[1] );
+                    throw new IllegalArgumentException( MSG_PARSE_ERROR_INVALID_SIDEB_SIZE.toString() + arr[1] );
                 }
                 // SideC
                 arr[2] = parseStringToDouble( partAt(2, params, SINGLE_SPACE) );
                 if ( arr[2] <= 0 ) {
-                    throw new IllegalArgumentException( TriangleConsts.MSG_PARSE_ERROR_INVALID_SIDEC_SIZE.toString() + arr[2] );
+                    throw new IllegalArgumentException( MSG_PARSE_ERROR_INVALID_SIDEC_SIZE.toString() + arr[2] );
                 }
                 // all sides value checking
                 if ( ((arr[0] + arr[1]) <= arr[2]) || ((arr[0] + arr[2]) <= arr[1] ) || ((arr[1] + arr[2]) <= arr[0]) ) {
-                    throw new IllegalArgumentException( String.format( TriangleConsts.MSG_PARSE_ERROR_INVALID_SIDES_SUM.toString(), arr[0], arr[1], arr[2] ) );
+                    throw new IllegalArgumentException( String.format( MSG_PARSE_ERROR_INVALID_SIDES_SUM.toString(), arr[0], arr[1], arr[2] ) );
                 }
             }
             return arr;
@@ -172,28 +186,28 @@ public class InputParamsParser {
     public double[] parseTwoSidesAndAngle(String params) {
 
         if ( isStrEmpty( params ) ) {
-            throw new IllegalArgumentException( TriangleConsts.MSG_PARSE_ERROR_EMPTY_PARAMS.toString() );
+            throw new IllegalArgumentException( MSG_PARSE_ERROR_EMPTY_PARAMS.toString() );
         } else {
             double[] arr = new double[3];
             int cnt = partCount(params, SINGLE_SPACE);
 
             if (cnt != 3) {
-                throw new IllegalArgumentException( TriangleConsts.MSG_PARSE_ERROR_MUST_BE_3_2_PARAMS.toString() + cnt);
+                throw new IllegalArgumentException( MSG_PARSE_ERROR_MUST_BE_3_2_PARAMS.toString() + cnt);
             } else {
                 // SideA
                 arr[0] = parseStringToDouble( partAt(0, params, SINGLE_SPACE) );
                 if ( arr[0] <= 0 ) {
-                    throw new IllegalArgumentException( TriangleConsts.MSG_PARSE_ERROR_INVALID_SIDEA_SIZE.toString() + arr[0] );
+                    throw new IllegalArgumentException( MSG_PARSE_ERROR_INVALID_SIDEA_SIZE.toString() + arr[0] );
                 }
                 // SideB
                 arr[1] = parseStringToDouble( partAt(1, params, SINGLE_SPACE) );
                 if ( arr[1] <= 0 ) {
-                    throw new IllegalArgumentException( TriangleConsts.MSG_PARSE_ERROR_INVALID_SIDEB_SIZE.toString() + arr[1] );
+                    throw new IllegalArgumentException( MSG_PARSE_ERROR_INVALID_SIDEB_SIZE.toString() + arr[1] );
                 }
                 // Angle
                 arr[2] = parseStringToDouble( partAt(2, params, SINGLE_SPACE) );
                 if ( ( arr[2] <= 0 ) || ( arr[2] >= 180 ) ){
-                    throw new IllegalArgumentException( TriangleConsts.MSG_PARSE_ERROR_INVALID_ANGLE_SIZE.toString() + arr[2] );
+                    throw new IllegalArgumentException( MSG_PARSE_ERROR_INVALID_ANGLE_SIZE.toString() + arr[2] );
                 }
             }
             return arr;
