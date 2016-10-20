@@ -1,18 +1,18 @@
 package lab02a.accounts;
 
-import static lab02a.accounts.AccountConsts.MSG_ANFE;
-import static lab02a.accounts.AccountConsts.MSG_IOE;
-import static lab02a.accounts.AccountConsts.MSG_ACC_FOUND;
-import static lab02a.accounts.AccountConsts.MSG_ACC_PROMPT;
-import static lab02a.accounts.AccountConsts.MSG_ACC_WELLCOME;
-import static lab02a.accounts.AccountConsts.MSG_ACC_FINAL_WORD;
+import java.io.IOException;
 
 import lab02a.checkers.IInputChecker;
 import lab02a.common.IWorkRunnable;
 import lab02a.consoles.ConsoleManager;
 import lab02a.logger.LogWriter;
 
-import java.io.IOException;
+import static lab02a.accounts.AccountConsts.MSG_ANFE;
+import static lab02a.accounts.AccountConsts.MSG_IOE;
+import static lab02a.accounts.AccountConsts.MSG_ACC_FOUND;
+import static lab02a.accounts.AccountConsts.MSG_ACC_PROMPT;
+import static lab02a.accounts.AccountConsts.MSG_ACC_WELLCOME;
+import static lab02a.accounts.AccountConsts.MSG_ACC_FINAL_WORD;
 
 /**
  * Created by Mark Lobanov on 28.09.2016.

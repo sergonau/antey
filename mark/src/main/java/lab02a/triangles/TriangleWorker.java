@@ -1,5 +1,13 @@
 package lab02a.triangles;
 
+import java.io.IOException;
+
+import lab02a.checkers.CheckerForDoubleArray;
+import lab02a.checkers.CheckerForInt;
+import lab02a.common.IWorkRunnable;
+import lab02a.consoles.ConsoleManager;
+import lab02a.logger.LogWriter;
+
 import static lab02a.triangles.TriangleConsts.MSG_TRI_WELLCOME;
 import static lab02a.triangles.TriangleConsts.MSG_TRI_FINAL_WORD;
 import static lab02a.triangles.TriangleConsts.MSG_TRI_PROMPT;
@@ -8,14 +16,6 @@ import static lab02a.triangles.TriangleConsts.MSG_AREA_CALCULATED;
 import static lab02a.triangles.TriangleConsts.MSG_PROMPT_SIDE_AND_HEIGHT;
 import static lab02a.triangles.TriangleConsts.MSG_PROMPT_THREE_SIDES;
 import static lab02a.triangles.TriangleConsts.MSG_PROMPT_TWO_SIDES_AND_ANGLE;
-
-import lab02a.checkers.CheckerForDoubleArray;
-import lab02a.checkers.CheckerForInt;
-import lab02a.common.IWorkRunnable;
-import lab02a.consoles.ConsoleManager;
-import lab02a.logger.LogWriter;
-
-import java.io.IOException;
 
 /**
  * Created by Mark Lobanov on 28.09.2016.

@@ -1,5 +1,9 @@
 package lab02a.triangles;
 
+import static lab02a.common.Utils.isStrEmpty;
+import static lab02a.common.Utils.partCount;
+import static lab02a.common.Utils.partAt;
+
 import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_IS_NOT_DOUBLE_VALUE;
 import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_EMPTY_CHOICE;
 import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_PARAM_1_3;
@@ -14,12 +18,6 @@ import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_INVALID_SIDEC_SIZE
 import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_INVALID_SIDES_SUM;
 import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_MUST_BE_3_2_PARAMS;
 import static lab02a.triangles.TriangleConsts.MSG_PARSE_ERROR_INVALID_ANGLE_SIZE;
-
-import static lab02a.common.Utils.isStrEmpty;
-import static lab02a.common.Utils.partCount;
-import static lab02a.common.Utils.partAt;
-
-import lab02a.triangles.TrialgleCalculationKind;
 
 /**
  * Parser for triangle parameters that comes as some string

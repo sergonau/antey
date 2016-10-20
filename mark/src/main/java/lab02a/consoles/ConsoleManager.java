@@ -1,11 +1,12 @@
 package lab02a.consoles;
 
+import java.util.Scanner;
+
 import lab02a.checkers.IInputChecker;
 import lab02a.common.IStringWriter;
+
 import static lab02a.common.Utils.prepareString;
 import static lab02a.common.Utils.isStringFound;
-
-import java.util.Scanner;
 
 /**
  * Created by Mark Lobanov on 28.09.2016.

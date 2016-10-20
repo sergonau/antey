@@ -1,9 +1,5 @@
 package lab02a.logger;
 
-import lab02a.common.IStringWriter;
-
-import static lab02a.common.FileUtils.isPathAvailableForFile;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,6 +8,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import lab02a.common.IStringWriter;
+
+import static lab02a.common.FileUtils.isPathAvailableForFile;
 
 /**
  * Created by Mark Lobanov on 08.09.2016.

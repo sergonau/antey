@@ -1,12 +1,9 @@
 package lab02a;
 
-import java.util.ArrayList;
-
 import lab02a.accounts.AccountStore;
 import lab02a.accounts.AccountWorker;
 import lab02a.checkers.CheckerForInt;
 import lab02a.checkers.CheckerForDigitalString;
-import lab02a.common.IWorkRunnable;
 import lab02a.consoles.ConsoleInputData;
 import lab02a.consoles.ConsoleManager;
 import lab02a.logger.LogWriter;
@@ -34,13 +31,11 @@ public class RunMainLab2a {
 
     public static void main(String[] args) {
         WorkersPool workers = new WorkersPool();
-        //ArrayList<IWorkRunnable> workers = new ArrayList<>();
 
         ConsoleManager console;
         AccountStore accountStore = new AccountStore();
         CheckerForInt menuChecker = new CheckerForInt();
         LogWriter logger = new LogWriter();
-
 
         console = new ConsoleManager();
         console.setInputData( new ConsoleInputData() );
@@ -65,7 +60,7 @@ public class RunMainLab2a {
 
         console.writeStrLn( MSG_MAIN_WELLCOME.toString() );
 
-        // maib work cycle
+        // main work cycle
         while ( console.hasProperInputString() ) {
             menuChecker.setRange(1, 2);
             if ( console.lastInputValueIsCorrect() ) {
@@ -76,5 +71,4 @@ public class RunMainLab2a {
         workers.clear();
         console.writeStrLn( MSG_MAIN_FINAL_WORD.toString() );
     }
-
 }

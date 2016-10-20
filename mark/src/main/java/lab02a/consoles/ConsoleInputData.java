@@ -1,8 +1,9 @@
 package lab02a.consoles;
 
+import java.util.ArrayList;
+
 import lab02a.checkers.IInputChecker;
 
-import java.util.ArrayList;
 
 /**
  * Created by Mark Lobanov on 28.09.2016.
