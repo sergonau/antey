@@ -3,9 +3,10 @@ package lab02a.accounts;
 import java.io.IOException;
 
 import lab02a.checkers.IInputChecker;
-import lab02a.common.IWorkRunnable;
 import lab02a.consoles.ConsoleManager;
 import lab02a.logger.LogWriter;
+import lab02a.workerspool.IWorkRunnable;
+import lab02a.workerspool.WorkerKeyInfo;
 
 import static lab02a.accounts.AccountConsts.MSG_ANFE;
 import static lab02a.accounts.AccountConsts.MSG_IOE;
@@ -19,6 +20,7 @@ import static lab02a.accounts.AccountConsts.MSG_ACC_FINAL_WORD;
  */
 public class AccountWorker implements IWorkRunnable {
     private static final String logAccountsValidation = "reports/accounts_validation/mark.acc.report.%s.txt";
+    private WorkerKeyInfo keyInfo;
     private ConsoleManager console;
     private IInputChecker checker;
     private AccountStore accountStore;
@@ -82,4 +84,8 @@ public class AccountWorker implements IWorkRunnable {
         console.writeStrLn( MSG_ACC_FINAL_WORD.toString() );
     }
 
+    @Override
+    public void setKeyInfo(WorkerKeyInfo keyInfo) {
+        this.keyInfo = keyInfo;
+    }
 }

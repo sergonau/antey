@@ -47,12 +47,12 @@ public class RunMainLab2a {
         console.addInputDatalevel(); // empty 3 data level
 
         // AccountWorker item
-        workers.put(new WorkerKeyInfo("1"), new AccountWorker( console,
+        workers.addWorker(new WorkerKeyInfo("1"), new AccountWorker( console,
                 new CheckerForDigitalString( ACCOUNT_LEN ),
                 accountStore,
                 logger ) );
         // TriangleWorker item
-        workers.put(new WorkerKeyInfo("2"), new TriangleWorker( console,
+        workers.addWorker(new WorkerKeyInfo("2"), new TriangleWorker( console,
                 menuChecker,
                 new TriangleCalculatorFactory(),
                 new InputParamsParser(),
@@ -62,9 +62,9 @@ public class RunMainLab2a {
 
         // main work cycle
         while ( console.hasProperInputString() ) {
-            menuChecker.setRange(1, 2);
+            menuChecker.setMenuInputValueRange(1, 2);
             if ( console.lastInputValueIsCorrect() ) {
-                workers.get( console.getLastInputValueAsString() ).runWork();
+                workers.getWorker( new WorkerKeyInfo( console.getLastInputValueAsString() ) ).runWork();
             }
             console.newLine();
         }

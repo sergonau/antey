@@ -1,4 +1,6 @@
 package lab02a.workerspool;
+
+import static lab02a.common.Utils.isStrEmpty;
 /**
  * Created by Mark Lobanov on 20.10.2016.
  */
@@ -6,7 +8,7 @@ public class WorkerKeyInfo {
     private String workerKey;
 
     public WorkerKeyInfo(String workerKey) {
-        if ( (workerKey != null) && (workerKey.length() > 0)) {
+        if ( !isStrEmpty( workerKey ) ) {
             this.workerKey = workerKey;
         } else {
             throw new IllegalArgumentException("Parameter workerKey can't be null or empty");

@@ -13,7 +13,7 @@ public class CheckerForInt implements IInputChecker {
     public CheckerForInt() {
     }
 
-    public CheckerForInt setRange(int minValue, int maxValue) {
+    public CheckerForInt setMenuInputValueRange(int minValue, int maxValue) {
         this.minValue = minValue;
         this.maxValue = maxValue;
         return this;

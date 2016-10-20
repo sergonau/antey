@@ -4,9 +4,10 @@ import java.io.IOException;
 
 import lab02a.checkers.CheckerForDoubleArray;
 import lab02a.checkers.CheckerForInt;
-import lab02a.common.IWorkRunnable;
 import lab02a.consoles.ConsoleManager;
 import lab02a.logger.LogWriter;
+import lab02a.workerspool.IWorkRunnable;
+import lab02a.workerspool.WorkerKeyInfo;
 
 import static lab02a.triangles.TriangleConsts.MSG_TRI_WELLCOME;
 import static lab02a.triangles.TriangleConsts.MSG_TRI_FINAL_WORD;
@@ -24,6 +25,7 @@ public class TriangleWorker implements IWorkRunnable {
     private static final String logGeometryCalculation = "reports/geometry_calculation/mark.geom.report.%s.txt";
     /** Console reader/writer private class member */
     private ConsoleManager console;
+    private WorkerKeyInfo keyInfo;
     /** Factory for triangle calculators */
     private TriangleCalculatorFactory factory;
     private InputParamsParser parser;
@@ -91,7 +93,7 @@ public class TriangleWorker implements IWorkRunnable {
         console.writeStrLn( MSG_TRI_WELLCOME.toString() );
         while ( console.hasProperInputString() ) {
 
-            checker.setRange(1, 3);
+            checker.setMenuInputValueRange(1, 3);
             if ( console.lastInputValueIsCorrect() ) {
                 selectedKind = parseIntToTrialgleCalculationKind( console.getLastInputValueAsInt() );
                 calculator = factory.newTriangleCalculator( selectedKind );
@@ -131,4 +133,8 @@ public class TriangleWorker implements IWorkRunnable {
         console.writeStrLn( MSG_TRI_FINAL_WORD.toString() );
     }
 
+    @Override
+    public void setKeyInfo(WorkerKeyInfo keyInfo) {
+        this.keyInfo = keyInfo;
+    }
 }

@@ -1,20 +1,20 @@
 package lab02a.workerspool;
 
+import java.util.Map;
 import java.util.HashMap;
-
-import lab02a.common.IWorkRunnable;
 
 /**
  * Created by Mark Lobanov on 20.10.2016.
  */
 public class WorkersPool {
-    private HashMap<WorkerKeyInfo, IWorkRunnable> workersMap = new HashMap<WorkerKeyInfo, IWorkRunnable>();
+    private Map<WorkerKeyInfo, IWorkRunnable> workersMap = new HashMap<>();
 
-    public IWorkRunnable get(String key) {
-        return workersMap.get(new WorkerKeyInfo( key ) );
+    public IWorkRunnable getWorker(WorkerKeyInfo key) {
+        return workersMap.get( key );
     }
 
-    public IWorkRunnable put(WorkerKeyInfo key, IWorkRunnable value) {
+    public IWorkRunnable addWorker(WorkerKeyInfo key, IWorkRunnable value) {
+        value.setKeyInfo( key );
         return workersMap.put(key, value);
     }
 
