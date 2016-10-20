@@ -1,8 +1,7 @@
 package lab02a;
 
-import static lab02a.consoles.ConsoleConsts.MSG_MAIN_PROMPT;
-import static lab02a.consoles.ConsoleConsts.MSG_MAIN_WELLCOME;
-import static lab02a.consoles.ConsoleConsts.MSG_MAIN_FINAL_WORD;
+import java.util.ArrayList;
+
 import lab02a.accounts.AccountStore;
 import lab02a.accounts.AccountWorker;
 import lab02a.checkers.CheckerForInt;
@@ -14,8 +13,12 @@ import lab02a.logger.LogWriter;
 import lab02a.triangles.InputParamsParser;
 import lab02a.triangles.TriangleCalculatorFactory;
 import lab02a.triangles.TriangleWorker;
+import lab02a.workerspool.WorkersPool;
+import lab02a.workerspool.WorkerKeyInfo;
 
-import java.util.ArrayList;
+import static lab02a.consoles.ConsoleConsts.MSG_MAIN_PROMPT;
+import static lab02a.consoles.ConsoleConsts.MSG_MAIN_WELLCOME;
+import static lab02a.consoles.ConsoleConsts.MSG_MAIN_FINAL_WORD;
 
 /**
  * Java with Sergey Naumovich
@@ -30,7 +33,9 @@ public class RunMainLab2a {
     private static final int ACCOUNT_LEN = 10;
 
     public static void main(String[] args) {
-        ArrayList<IWorkRunnable> workers = new ArrayList<>();
+        WorkersPool workers = new WorkersPool();
+        //ArrayList<IWorkRunnable> workers = new ArrayList<>();
+
         ConsoleManager console;
         AccountStore accountStore = new AccountStore();
         CheckerForInt menuChecker = new CheckerForInt();
@@ -46,13 +51,13 @@ public class RunMainLab2a {
         console.addInputDatalevel(); // empty 2 data level
         console.addInputDatalevel(); // empty 3 data level
 
-        // 0 item
-        workers.add( new AccountWorker( console,
+        // AccountWorker item
+        workers.put(new WorkerKeyInfo("1"), new AccountWorker( console,
                 new CheckerForDigitalString( ACCOUNT_LEN ),
                 accountStore,
                 logger ) );
-        // 1 item
-        workers.add( new TriangleWorker( console,
+        // TriangleWorker item
+        workers.put(new WorkerKeyInfo("2"), new TriangleWorker( console,
                 menuChecker,
                 new TriangleCalculatorFactory(),
                 new InputParamsParser(),
@@ -64,11 +69,11 @@ public class RunMainLab2a {
         while ( console.hasProperInputString() ) {
             menuChecker.setRange(1, 2);
             if ( console.lastInputValueIsCorrect() ) {
-                workers.get( console.getLastInputValueAsInt()-1 ).runWork();
+                workers.get( console.getLastInputValueAsString() ).runWork();
             }
             console.newLine();
         }
-
+        workers.clear();
         console.writeStrLn( MSG_MAIN_FINAL_WORD.toString() );
     }
 
