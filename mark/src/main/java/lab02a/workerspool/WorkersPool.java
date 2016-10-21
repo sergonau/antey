@@ -9,12 +9,11 @@ import java.util.HashMap;
 public class WorkersPool {
     private Map<WorkerKeyInfo, IWorkRunnable> workersMap = new HashMap<>();
 
-    public IWorkRunnable getWorker(WorkerKeyInfo key) {
-        return workersMap.get( key );
+    public IWorkRunnable getWorker(String key) {
+        return workersMap.get( new WorkerKeyInfo( key ) );
     }
 
     public IWorkRunnable addWorker(WorkerKeyInfo key, IWorkRunnable value) {
-        value.setKeyInfo( key );
         return workersMap.put(key, value);
     }
 

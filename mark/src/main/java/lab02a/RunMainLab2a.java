@@ -64,7 +64,7 @@ public class RunMainLab2a {
         while ( console.hasProperInputString() ) {
             menuChecker.setMenuInputValueRange(1, 2);
             if ( console.lastInputValueIsCorrect() ) {
-                workers.getWorker( new WorkerKeyInfo( console.getLastInputValueAsString() ) ).runWork();
+                workers.getWorker( console.getLastInputValueAsString() ).runWork();
             }
             console.newLine();
         }

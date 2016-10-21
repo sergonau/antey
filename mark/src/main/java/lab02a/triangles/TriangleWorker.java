@@ -25,7 +25,6 @@ public class TriangleWorker implements IWorkRunnable {
     private static final String logGeometryCalculation = "reports/geometry_calculation/mark.geom.report.%s.txt";
     /** Console reader/writer private class member */
     private ConsoleManager console;
-    private WorkerKeyInfo keyInfo;
     /** Factory for triangle calculators */
     private TriangleCalculatorFactory factory;
     private InputParamsParser parser;
@@ -131,10 +130,5 @@ public class TriangleWorker implements IWorkRunnable {
         }
         console.switchToPrevLevel();
         console.writeStrLn( MSG_TRI_FINAL_WORD.toString() );
-    }
-
-    @Override
-    public void setKeyInfo(WorkerKeyInfo keyInfo) {
-        this.keyInfo = keyInfo;
     }
 }

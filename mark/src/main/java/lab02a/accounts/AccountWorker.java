@@ -84,8 +84,4 @@ public class AccountWorker implements IWorkRunnable {
         console.writeStrLn( MSG_ACC_FINAL_WORD.toString() );
     }
 
-    @Override
-    public void setKeyInfo(WorkerKeyInfo keyInfo) {
-        this.keyInfo = keyInfo;
-    }
 }

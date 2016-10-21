@@ -8,5 +8,4 @@ public interface IWorkRunnable {
 
     public void runWork();
 
-    public void setKeyInfo(WorkerKeyInfo keyInfo);
 }
