@@ -24,13 +24,12 @@ public class RunMainLab2b {
 
         new Thread( new BufferStatus( buffer ) ).start();
 
-
         for (int i=1; i<=20; i++) {
             new Thread( new Producer(i, buffer, strGenerator, 10) ).start();
         }
 
         for (int i=1; i<=5; i++) {
-            new Thread( new Consumer(buffer) ).start();
+            new Thread( new Consumer( buffer ) ).start();
         }
 
     }
